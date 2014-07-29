@@ -1,0 +1,9 @@
+# Make sublime work
+
+SUBLIME_BIN="/Applications/Sublime Text 2.app/Contents/SharedSupport/bin"
+SUBLIME_CMD="subl"
+if [ -x "${SUBLIME_BIN}/${SUBLIME_CMD}" ]; then
+  export PATH="${SUBLIME_BIN}":$PATH
+  export VISUAL="${SUBLIME_CMD} -w";
+  export EDITOR="$VISUAL";
+fi
