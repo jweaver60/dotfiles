@@ -1,0 +1,147 @@
+# Path to your oh-my-zsh configuration.
+ZSH=$HOME/.oh-my-zsh
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+ZSH_THEME="eastwood"
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Set to this to use case-sensitive completion
+# CASE_SENSITIVE="true"
+
+# Support for Sublime command from terminal
+SUBLIME_BIN="/Applications/Sublime Text.app/Contents/SharedSupport/bin"
+SUBLIME_CMD="subl"
+if [ -x "${SUBLIME_BIN}/${SUBLIME_CMD}" ]; then
+	  export PATH="${SUBLIME_BIN}":$PATH
+	  export VISUAL="${SUBLIME_CMD} -w";
+	  export EDITOR="$VISUAL";
+fi
+
+# Comment this out to disable bi-weekly auto-update checks
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment to change how often before auto-updates occur? (in days)
+export UPDATE_ZSH_DAYS=1
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want to disable command autocorrection
+# DISABLE_CORRECTION="true"
+
+# Uncomment following line if you want red dots to be displayed while waiting for completion
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment following line if you want to disable marking untracked files under
+# VCS as dirty. This makes repository status check for large repositories much,
+# much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Set default user
+DEFAULT_USER="jacob@mothership"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git rvm)
+
+source $ZSH/oh-my-zsh.sh
+
+# Vim aliases and functions
+alias pathogen="cd ~/.vim/bundle"
+
+# Sites aliases
+alias jw="cd ~/Projects/jacobweaver"
+alias nicquid="cd ~/Projects/nicquid"
+alias cards="cd ~/Projects/cards"
+
+# PHP Aliases
+alias artisan="php artisan"
+alias phpunit="vendor/bin/phpunit"
+
+# MySQL aliases
+alias newdb="mysqladmin -uroot create"
+alias dropdb="mysqladmin -uroot drop"
+alias sqlog="mysql -uroot"
+alias mysqlstart="mysql.server start"
+alias mysqlstop="mysql.server stop"
+
+# npm aliases
+alias npmdir="cd /usr/local/share/npm/lib/node_modules"
+
+# PostgreSQL aliases
+alias pgstart="postgres -D /usr/local/var/postgres"
+
+# ZSH and CLI aliases
+alias profile="vim ~/.zshrc"
+alias l="ls -la"
+alias p="cd ~/Projects"
+
+# Octopress Aliases and functions
+alias octgen="rake generate"
+alias octdep="rake deploy"
+alias octpre="rake preview"
+
+octnew() {
+  rake new_post\["$@"\]
+}
+
+# IRC (irssi)
+alias irc="irssi -c freenode -n definiv"
+
+# Morning update
+goodmorning() {
+  echo "upgrading oh my zsh"
+  upgrade_oh_my_zsh
+  echo "updating homebrew"
+  brew update
+  echo "updating any packages"
+  brew upgrade
+  echo "cleaning up any old packages"
+  brew cleanup
+  echo "checking for any homebrew errors"
+  brew doctor
+  echo "Updating vim plugins"
+  vim +PluginUpdate +qall
+  echo "Cleaning Node cache"
+  npm cache clean
+  echo "Updating Node packages"
+  npm update -g
+  echo "updating RVM"
+  rvm get head
+  echo "cleaning up RVM"
+  rvm cleanup all
+  echo "Good to go!"
+}
+
+# System Memory analysis aliases and functions
+alias psall="ps -axm -o 'rss,comm'"
+alias space="du -sh"
+
+pstotal() {
+  ps -axm -o "rss,comm" | awk 'BEGIN { s=0;}; {s=s+$1;}; END { printf("%.2f GB\n", (s/1024.0/1024));}'
+}
+
+psover() {
+  ps -axm -o "rss,comm" | awk 'BEGIN { c=0;s=0;}; ($1 > 100000) {c=c+1;s=s+$1;}; END { printf("%.2f GB from %d processes\n", (s/1024.0/1024),c);}'
+}
+
+# pip should only run if there is a virtual environment detected
+export PIP_REQUIRE_VIRTUALENV=true
+
+# cache pip installed packages to avoid redownloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/local/sbin:/Users/jacob/.rvm/bin:/usr/local/heroku/bin:/usr/local/share/npm/bin:$PATH
+
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
