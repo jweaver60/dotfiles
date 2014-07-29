@@ -56,47 +56,12 @@ plugins=(git rvm)
 
 source $ZSH/oh-my-zsh.sh
 
-# Vim aliases and functions
-alias pathogen="cd ~/.vim/bundle"
-
-# Sites aliases
-alias jw="cd ~/Projects/jacobweaver"
-alias nicquid="cd ~/Projects/nicquid"
-alias cards="cd ~/Projects/cards"
-
-# PHP Aliases
-alias artisan="php artisan"
-alias phpunit="vendor/bin/phpunit"
-
-# MySQL aliases
-alias newdb="mysqladmin -uroot create"
-alias dropdb="mysqladmin -uroot drop"
-alias sqlog="mysql -uroot"
-alias mysqlstart="mysql.server start"
-alias mysqlstop="mysql.server stop"
-
-# npm aliases
-alias npmdir="cd /usr/local/share/npm/lib/node_modules"
-
-# PostgreSQL aliases
-alias pgstart="postgres -D /usr/local/var/postgres"
-
-# ZSH and CLI aliases
-alias profile="vim ~/.zshrc"
-alias l="ls -la"
-alias p="cd ~/Projects"
-
-# Octopress Aliases and functions
-alias octgen="rake generate"
-alias octdep="rake deploy"
-alias octpre="rake preview"
+# source some files
+source ~/.dotfiles/zsh/alias
 
 octnew() {
   rake new_post\["$@"\]
 }
-
-# IRC (irssi)
-alias irc="irssi -c freenode -n definiv"
 
 # Morning update
 goodmorning() {
