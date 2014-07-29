@@ -34,3 +34,7 @@ alias octpre="rake preview"
 
 # IRC (irssi)
 alias irc="irssi -c freenode -n definiv"
+
+# System Memory analysis aliases and functions
+alias psall="ps -axm -o 'rss,comm'"
+alias space="du -sh"

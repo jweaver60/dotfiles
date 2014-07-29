@@ -14,15 +14,6 @@ ZSH_THEME="eastwood"
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
 
-# Support for Sublime command from terminal
-SUBLIME_BIN="/Applications/Sublime Text.app/Contents/SharedSupport/bin"
-SUBLIME_CMD="subl"
-if [ -x "${SUBLIME_BIN}/${SUBLIME_CMD}" ]; then
-	  export PATH="${SUBLIME_BIN}":$PATH
-	  export VISUAL="${SUBLIME_CMD} -w";
-	  export EDITOR="$VISUAL";
-fi
-
 # Comment this out to disable bi-weekly auto-update checks
 # DISABLE_AUTO_UPDATE="true"
 
@@ -54,59 +45,10 @@ DEFAULT_USER="jacob@mothership"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git rvm)
 
-source $ZSH/oh-my-zsh.sh
-
 # source some files
+source $ZSH/oh-my-zsh.sh
+source ~/.dotfiles/zsh/path
 source ~/.dotfiles/zsh/alias
+source ~/.dotfiles/zsh/functions
+source ~/.dotfiles/zsh/python
 
-octnew() {
-  rake new_post\["$@"\]
-}
-
-# Morning update
-goodmorning() {
-  echo "upgrading oh my zsh"
-  upgrade_oh_my_zsh
-  echo "updating homebrew"
-  brew update
-  echo "updating any packages"
-  brew upgrade
-  echo "cleaning up any old packages"
-  brew cleanup
-  echo "checking for any homebrew errors"
-  brew doctor
-  echo "Updating vim plugins"
-  vim +PluginUpdate +qall
-  echo "Cleaning Node cache"
-  npm cache clean
-  echo "Updating Node packages"
-  npm update -g
-  echo "updating RVM"
-  rvm get head
-  echo "cleaning up RVM"
-  rvm cleanup all
-  echo "Good to go!"
-}
-
-# System Memory analysis aliases and functions
-alias psall="ps -axm -o 'rss,comm'"
-alias space="du -sh"
-
-pstotal() {
-  ps -axm -o "rss,comm" | awk 'BEGIN { s=0;}; {s=s+$1;}; END { printf("%.2f GB\n", (s/1024.0/1024));}'
-}
-
-psover() {
-  ps -axm -o "rss,comm" | awk 'BEGIN { c=0;s=0;}; ($1 > 100000) {c=c+1;s=s+$1;}; END { printf("%.2f GB from %d processes\n", (s/1024.0/1024),c);}'
-}
-
-# pip should only run if there is a virtual environment detected
-export PIP_REQUIRE_VIRTUALENV=true
-
-# cache pip installed packages to avoid redownloading
-export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
-
-# Customize to your needs...
-export PATH=/usr/local/bin:/usr/local/sbin:/Users/jacob/.rvm/bin:/usr/local/heroku/bin:/usr/local/share/npm/bin:$PATH
-
-# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

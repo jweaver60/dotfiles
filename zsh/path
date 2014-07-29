@@ -1,0 +1,6 @@
+# My PATH is awesome
+
+# Customize to your needs...
+export PATH=/usr/local/bin:/usr/local/sbin:/Users/jacob/.rvm/bin:/usr/local/heroku/bin:/usr/local/share/npm/bin:$PATH
+
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
