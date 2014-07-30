@@ -12,43 +12,53 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Plugin time
-Plugin 'tpope/vim-fugitive'
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+
+" Snippets
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'honza/vim-snippets'
+
+" Add-ons
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'honza/vim-snippets'
+Plugin 'mattn/emmet-vim'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-repeat'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'bling/vim-bufferline'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
+
+" Languages
+Plugin 'tpope/vim-rails'
 Plugin 'elzr/vim-json'
 Plugin 'groenewege/vim-less'
 Plugin 'pangloss/vim-javascript'
 Plugin 'briancollins/vim-jst'
 Plugin 'kchmck/vim-coffee-script'
-Plugin 'amirh/HTML-AutoCloseTag'
 Plugin 'hail2u/vim-css3-syntax'
-Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-markdown'
-Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
-Plugin 'mattn/emmet-vim'
-Plugin 'jgdavey/vim-railscasts.git'
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-repeat'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'bling/vim-bufferline'
+
+" Git
+Plugin 'tpope/vim-fugitive'
 Plugin 'mhinz/vim-signify'
-Plugin 'scrooloose/syntastic'
-Plugin 'godlygeek/tabular'
-Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+
+" Themes
+Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
+Plugin 'jgdavey/vim-railscasts.git'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
