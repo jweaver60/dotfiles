@@ -27,6 +27,7 @@ alias profile="vim ~/.zshrc"
 alias l="ls -la"
 alias p="cd ~/Projects"
 alias dots="cd ~/.dotfiles"
+alias vimrc="vim ~/.dotfiles/vim/vimrc"
 
 # Octopress Aliases and functions
 alias octgen="rake generate"
