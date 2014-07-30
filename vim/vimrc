@@ -69,16 +69,15 @@ filetype plugin indent on    " required
 colorscheme railscasts
 syntax on
 
-set number
-set nospell
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-
 let mapleader = ","
 let g:Powerline_symbols = 'fancy'
 let g:indent_guides_enable_on_vim_startup=0
 let g:user_emmet_leader_key='<C-Z>'
 
+set number
+set nospell
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
 set autoindent
 set backspace=indent,eol,start
 set smartindent
