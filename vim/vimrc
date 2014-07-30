@@ -39,6 +39,7 @@ Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plugin 'mattn/emmet-vim'
 Plugin 'jgdavey/vim-railscasts.git'
 Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
