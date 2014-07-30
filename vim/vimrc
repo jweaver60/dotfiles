@@ -40,6 +40,7 @@ Plugin 'bling/vim-bufferline'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
+Plugin 'spf13/vim-autoclose'
 
 " Languages
 Plugin 'tpope/vim-rails'
