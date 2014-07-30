@@ -1,4 +1,5 @@
 # Python stuff (may not keep this)
+# 
 
 # pip should only run if there is a virtual environment detected
 export PIP_REQUIRE_VIRTUALENV=true
