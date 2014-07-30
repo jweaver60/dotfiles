@@ -26,6 +26,7 @@ alias pgstart="postgres -D /usr/local/var/postgres"
 alias profile="vim ~/.zshrc"
 alias l="ls -la"
 alias p="cd ~/Projects"
+alias dots="cd ~/.dotfiles"
 
 # Octopress Aliases and functions
 alias octgen="rake generate"
