@@ -40,7 +40,13 @@ Plugin 'mattn/emmet-vim'
 Plugin 'jgdavey/vim-railscasts.git'
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
-Plugin 'Townk/vim-autoclose'
+Plugin 'Raimondi/delimitMate'
+Plugin 'tpope/vim-repeat'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'bling/vim-bufferline'
+Plugin 'mhinz/vim-signify'
+Plugin 'scrooloose/syntastic'
+Plugin 'godlygeek/tabular'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
