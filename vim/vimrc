@@ -18,7 +18,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'vim-scripts/sessionman.vim'
-Plugin 'Lokaltog/vim-powerline'
+Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mbbill/undotree'
 Plugin 'scrooloose/nerdcommenter'
@@ -73,6 +73,7 @@ let mapleader = ","
 let g:Powerline_symbols = 'fancy'
 let g:indent_guides_enable_on_vim_startup=0
 let g:user_emmet_leader_key='<C-Z>'
+let g:airline_powerline_fonts = 1
 
 set number
 set nospell
