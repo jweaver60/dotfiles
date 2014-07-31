@@ -147,3 +147,7 @@ xmap <C-k> <Plug>(neosnippet_expand_target)
 " Search functionality
 set hlsearch
 nmap <silent> <leader>/ :set invhlsearch<CR>
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
