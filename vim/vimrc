@@ -151,3 +151,6 @@ nmap <silent> <leader>/ :set invhlsearch<CR>
 " Visual shifting (does not exit Visual mode)
 vnoremap < <gv
 vnoremap > >gv
+
+" vim-autoclose
+let g:autoclose_vim_commentmode = 1 " Don't autoclose in vim files
