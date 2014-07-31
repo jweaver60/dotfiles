@@ -47,7 +47,6 @@ plugins=(git rvm)
 
 # source some files
 source $ZSH/oh-my-zsh.sh
-source ~/.dotfiles/zsh/path
 source ~/.dotfiles/zsh/alias
 source ~/.dotfiles/zsh/functions
 source ~/.dotfiles/zsh/python
