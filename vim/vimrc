@@ -144,3 +144,7 @@ endif
 
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
+
+" Search functionality
+set hlsearch
+nmap <silent> <leader>/ :set invhlsearch<CR>
