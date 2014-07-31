@@ -52,6 +52,9 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-markdown'
+Plugin 'spf13/PIV'
+Plugin 'arnaud-lb/vim-php-namespace'
+Plugin 'beyondwords/vim-twig'
 
 " Git
 Plugin 'tpope/vim-fugitive'
