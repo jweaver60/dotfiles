@@ -160,3 +160,6 @@ vnoremap > >gv
 
 " vim-autoclose
 let g:autoclose_vim_commentmode = 1 " Don't autoclose in vim files
+
+" ctags and tagbar
+nmap <F8> :TagbarToggle<CR>
