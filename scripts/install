@@ -6,7 +6,7 @@ echo "Installing homebrew"
 ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 
 echo "Installing homebrew tools"
-brew install apple-gcc42 autoconf automake cloog cmake composer cscope ecj freetype gdbm gettext git glib gmp icu4c irssi isl jpeg libffi libgpg-error libksba libmpc libpng libtool libxml2 libxslt libyaml macvim makedepend mcrypt mercurial mhash mpfr mysql node openssl ossp-uuid pcre php55 php55-intl php55-mcrypt pkgconfig postgresql python readline scons sqlite subversion unixodbc wget xz zlib zsh
+brew install apple-gcc42 autoconf automake cloog cmake composer cscope ecj freetype gdbm gettext git glib gmp icu4c irssi isl jpeg libffi libgpg-error libksba libmpc libpng libtool libxml2 libxslt libyaml macvim makedepend mcrypt mercurial mhash mpfr mysql node openssl ossp-uuid pcre php55 php55-intl php55-mcrypt pkgconfig postgresql python readline scons sqlite subversion unixodbc wget xz zlib zsh ctags
 
 echo "Installing Oh My ZSH"
 curl -L http://install.ohmyz.sh | sh
