@@ -164,7 +164,12 @@ let g:autoclose_vim_commentmode = 1 " Don't autoclose in vim files
 " ctags and tagbar
 nmap <leader>t :TagbarToggle<CR>
 
+" automatic save and load view
+autocmd BufWinLeave \* silent! mkview
+autocmd BufWinEnter \* silent! loadview
+
 " Set undo, swap and backup directories
 set undodir=~/.vim/undo//
 set directory=~/.vim/swap//
 set backupdir=~/.vim/backup//
+set viewdir=~/.vim/views//
