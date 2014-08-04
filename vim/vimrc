@@ -179,7 +179,7 @@ augroup vimrc
     \   if expand('%') != '' && &buftype !~ 'nofile'
     \|      mkview
     \|  endif
-    autocmd BufRead *
+    autocmd BufWinEnter *
     \   if expand('%') != '' && &buftype !~ 'nofile'
     \|      silent loadview
     \|  endif
