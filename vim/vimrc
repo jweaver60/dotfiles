@@ -63,7 +63,7 @@ Plugin 'mhinz/vim-signify'
 
 " Themes
 Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
-Plugin 'jgdavey/vim-railscasts.git'
+Plugin 'morhetz/gruvbox'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -83,7 +83,7 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-colorscheme railscasts
+colorscheme gruvbox
 syntax on
 
 let mapleader = ","
@@ -91,6 +91,9 @@ let g:Powerline_symbols = 'fancy'
 let g:indent_guides_enable_on_vim_startup=0
 let g:user_emmet_leader_key='<C-Z>'
 let g:airline_powerline_fonts = 1
+if !has("gui_running")
+  let g:gruvbox_italic=0
+endif
 
 set number
 set nospell
