@@ -186,3 +186,9 @@ augroup vimrc
     \   if expand('%') != '' && &buftype !~ 'nofile'
     \|      silent loadview
     \|  endif
+
+" Let's not use arrow keys for now
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
