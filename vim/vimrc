@@ -171,7 +171,7 @@ set backupdir=~/.vim/backup//
 set viewdir=~/.vim/views//
 
 " Save and load fold settings automatically
-" Reference: http://vim-users.jp/2009/10/hack84/
+" Reference: http://dotfiles.org/~tsukkee/.vimrc
 " Don't save options.
 set viewoptions-=options
 augroup vimrc
