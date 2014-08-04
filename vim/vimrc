@@ -164,6 +164,12 @@ let g:autoclose_vim_commentmode = 1 " Don't autoclose in vim files
 " ctags and tagbar
 nmap <leader>t :TagbarToggle<CR>
 
+" Set undo, swap and backup directories
+set undodir=~/.vim/undo//
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backup//
+set viewdir=~/.vim/views//
+
 " Save and load fold settings automatically
 " Reference: http://vim-users.jp/2009/10/hack84/
 " Don't save options.
@@ -177,9 +183,3 @@ augroup vimrc
     \   if expand('%') != '' && &buftype !~ 'nofile'
     \|      silent loadview
     \|  endif
-
-" Set undo, swap and backup directories
-set undodir=~/.vim/undo//
-set directory=~/.vim/swap//
-set backupdir=~/.vim/backup//
-set viewdir=~/.vim/views//
