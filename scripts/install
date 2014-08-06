@@ -26,6 +26,7 @@ mv ~/.vimrc ~/.old_dotfiles/.vimrc
 mv ~/.gvimrc ~/.old_dotfiles/.gvimrc
 mv ~/.zlogin ~/.old_dotfiles/.zlogin
 mv ~/.zshrc ~/.old_dotfiles/.zshrc
+mv ~/.zshenv ~/.old_dotfiles/.zshenv
 ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
 ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
@@ -36,3 +37,4 @@ ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
 ln -s ~/.dotfiles/zsh/zlogin ~/.zlogin
 ln -s ~/.dotfiles/zsh/zshrc ~/.zshrc
+ln -s ~/.dotfiles/zsh/zshenv ~/.zshenv
