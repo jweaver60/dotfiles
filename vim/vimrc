@@ -35,7 +35,6 @@ Plugin 'mbbill/undotree'
 Plugin 'mattn/emmet-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-repeat'
-Plugin 'tacahiroy/ctrlp-funky'
 Plugin 'bling/vim-bufferline'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'scrooloose/syntastic'
@@ -91,7 +90,6 @@ let g:Powerline_symbols = 'fancy'
 let g:indent_guides_enable_on_vim_startup=0
 let g:user_emmet_leader_key='<C-Z>'
 let g:airline_powerline_fonts = 1
-let g:ctrlp_extensions = ['funky']
 if !has("gui_running")
   let g:gruvbox_italic=0
 endif
