@@ -1,7 +1,9 @@
 #My aliases
-
 alias stb="cd ~/Projects/sellers_toolbox/sellerstoolbox"
 alias dipm="cd ~/Projects/dipm/wp-content/themes/dipm"
 alias newdb="mysqladmin -uroot create"
 alias dropdb="mysqladmin -uroot drop"
 alias sqlog="mysql -uroot"
+
+# Other good things to have
+alias cpwd="pwd | tr -d '\n' | pbcopy"
