@@ -1,3 +1,3 @@
 set guifont=Source\ Code\ Pro\ for\ Powerline:h15
-colorscheme peacocks-in-space
+colorscheme gruvbox
 set linespace=5
