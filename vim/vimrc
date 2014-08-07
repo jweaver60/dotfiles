@@ -41,6 +41,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'godlygeek/tabular'
 Plugin 'spf13/vim-autoclose'
 Plugin 'majutsushi/tagbar'
+Plugin 'tpope/vim-dispatch'
 
 " Languages
 Plugin 'tpope/vim-rails'
