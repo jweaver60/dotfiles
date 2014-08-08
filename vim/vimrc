@@ -35,6 +35,7 @@ Plugin 'mbbill/undotree'
 Plugin 'mattn/emmet-vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-repeat'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'scrooloose/syntastic'
@@ -193,3 +194,5 @@ noremap <left> <nop>
 noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
+
+" Tmuxline configuration
