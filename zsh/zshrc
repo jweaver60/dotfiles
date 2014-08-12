@@ -51,3 +51,5 @@ source ~/.dotfiles/zsh/alias
 source ~/.dotfiles/zsh/functions
 source ~/.dotfiles/zsh/python
 
+# Gruvbox color correction
+~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
