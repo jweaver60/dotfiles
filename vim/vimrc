@@ -194,10 +194,3 @@ noremap <left> <nop>
 noremap <right> <nop>
 noremap <up> <nop>
 noremap <down> <nop>
-
-" Correct highlighting of css properties (may have side effects)
-augroup VimCSS3Syntax
-  autocmd!
-
-  autocmd FileType css setlocal iskeyword+=-
-augroup END
