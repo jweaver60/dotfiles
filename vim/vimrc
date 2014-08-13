@@ -87,6 +87,7 @@ filetype plugin indent on    " required
 colorscheme gruvbox
 syntax on
 
+" configure some keys and settings
 let mapleader = ","
 let g:Powerline_symbols = 'fancy'
 let g:indent_guides_enable_on_vim_startup=0
@@ -96,21 +97,28 @@ if !has("gui_running")
   let g:gruvbox_italic=0
 endif
 
-set number
-set nospell
-set t_Co=256
-set fillchars+=stl:\ ,stlnc:\
-set autoindent
-set backspace=indent,eol,start
-set smartindent
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set background=dark
-set showmatch
-set laststatus=2
-set scrolloff=5
+" set some useful options
+set number                     " show numbers
+set nospell                    " no spell checking
+set t_Co=256                   " for colorschemes
+set fillchars+=stl:\ ,stlnc:\  " for powerline
+set autoindent                 " smart indentation
+set copyindent                 " copy indentation when autoindenting
+set backspace=indent,eol,start " make backspace normal
+set smartindent                " be smart about indenting
+set tabstop=2                  " 2 space tabs
+set shiftwidth=2               " 2 space tabs
+set softtabstop=2              " 2 space tabs
+set expandtab                  " make tabs
+set background=dark            " dark colorschemes
+set showmatch                  " show matching in search
+set laststatus=2               " for powerline
+set scrolloff=5                " stay 5 lines from top or bottom
+set linespace=15               " nice linespacing
+set visualbell                 " don't beep
+set noerrorbells               " don't beep
+set mouse=a                    " let me scroll
+
 scriptencoding utf-8
 
 nnoremap <Leader>n :NERDTreeToggle<CR>
