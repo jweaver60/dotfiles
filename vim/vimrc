@@ -83,19 +83,18 @@ filetype plugin indent on    " required
 
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
-
 colorscheme gruvbox
-syntax on
-
-" configure some keys and settings
-let mapleader = ","
-let g:Powerline_symbols = 'fancy'
-let g:indent_guides_enable_on_vim_startup=0
-let g:user_emmet_leader_key='<C-Z>'
-let g:airline_powerline_fonts = 1
 if !has("gui_running")
   let g:gruvbox_italic=0
 endif
+syntax on
+scriptencoding utf-8
+
+let mapleader=","                           " mapleader is comma
+let g:indent_guides_enable_on_vim_startup=0 " no indent guides
+let g:user_emmet_leader_key='<C-Z>'         " emmet leader key is ctrl-z
+let g:neocomplcache_enable_at_startup = 1   " enable neocomplcache on start
+let g:autoclose_vim_commentmode = 1         " Don't autoclose in vim files
 
 " set some useful options
 set number                     " show numbers
@@ -118,31 +117,28 @@ set linespace=15               " nice linespacing
 set visualbell                 " don't beep
 set noerrorbells               " don't beep
 set mouse=a                    " let me scroll
+set hlsearch                   " highlight search results
+set incsearch                  " increment through search results
+set ignorecase                 " ignore cases in search
+set undodir=~/.vim/undo//      " set undo directory
+set directory=~/.vim/swap//    " set swap directory
+set backupdir=~/.vim/backup//  " set backup directory
+set viewdir=~/.vim/views//     " set views directory
 
-scriptencoding utf-8
-
+" custom mappings
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
-
-if has('statusline')
-  set statusline=%<%f\                     " Filename
-  set statusline+=%w%h%m%r                 " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " Filetype
-  set statusline+=\ [%{getcwd()}]          " Current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-
-" neocomplcache configurations
-let g:neocomplcache_enable_at_startup = 1
+noremap <left> <nop>
+noremap <right> <nop>
+noremap <up> <nop>
+noremap <down> <nop>
+nmap <leader>t :TagbarToggle<CR>
+nmap <silent> <leader>/ :set invhlsearch<CR>
+vnoremap < <gv
+vnoremap > >gv
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+xmap <C-k> <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
@@ -152,36 +148,32 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
 
+" Powerline stuff
+let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
+if has('statusline')
+  set statusline=%<%f\                     " Filename
+  set statusline+=%w%h%m%r                 " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y]            " Filetype
+  set statusline+=\ [%{getcwd()}]          " Current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+endif
+
+" omnicomplete and file recognition
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+
 " For snippet_complete marker.
 if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
-
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" Search functionality
-set hlsearch
-set incsearch
-set ignorecase
-nmap <silent> <leader>/ :set invhlsearch<CR>
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
-" vim-autoclose
-let g:autoclose_vim_commentmode = 1 " Don't autoclose in vim files
-
-" ctags and tagbar
-nmap <leader>t :TagbarToggle<CR>
-
-" Set undo, swap and backup directories
-set undodir=~/.vim/undo//
-set directory=~/.vim/swap//
-set backupdir=~/.vim/backup//
-set viewdir=~/.vim/views//
 
 " Save and load fold settings automatically
 " Reference: http://dotfiles.org/~tsukkee/.vimrc
@@ -196,9 +188,3 @@ augroup vimrc
     \   if expand('%') != '' && &buftype !~ 'nofile'
     \|      silent loadview
     \|  endif
-
-" Let's not use arrow keys for now
-noremap <left> <nop>
-noremap <right> <nop>
-noremap <up> <nop>
-noremap <down> <nop>
