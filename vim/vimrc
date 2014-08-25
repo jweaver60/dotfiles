@@ -114,6 +114,7 @@ set showmatch                  " show matching in search
 set laststatus=2               " for powerline
 set scrolloff=5                " stay 5 lines from top or bottom
 set linespace=12               " nice linespacing
+set timeoutlen=50              " no pause on exiting insert
 set foldmethod=manual          " manually set folds
 set visualbell                 " don't beep
 set noerrorbells               " don't beep
