@@ -152,6 +152,7 @@ smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 " Powerline stuff
 let g:Powerline_symbols = 'fancy'
 let g:airline_powerline_fonts = 1
+let g:airline_theme = 'tomorrow'
 if has('statusline')
   set statusline=%<%f\                     " Filename
   set statusline+=%w%h%m%r                 " Options
