@@ -95,6 +95,7 @@ let g:indent_guides_enable_on_vim_startup=0 " no indent guides
 let g:user_emmet_leader_key='<C-Z>'         " emmet leader key is ctrl-z
 let g:neocomplcache_enable_at_startup = 1   " enable neocomplcache on start
 let g:autoclose_vim_commentmode = 1         " Don't autoclose in vim files
+let g:bufferline_echo = 0                   " No bufferline below airline
 
 " set some useful options
 set number                     " show numbers
