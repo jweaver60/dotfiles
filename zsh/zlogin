@@ -1,1 +1,4 @@
 source ~/.dotfiles/zsh/path
+
+# rbenv init
+eval "$(rbenv init -)"
