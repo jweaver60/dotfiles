@@ -12,9 +12,6 @@ brew install macvim --override-system-vim
 echo "Installing Oh My ZSH"
 curl -L http://install.ohmyz.sh | sh
 
-echo "Installing RVM"
-\curl -sSL https://get.rvm.io | bash -s stable
-
 echo "Creating some symlinks"
 mkdir ~/.old_dotfiles
 mv ~/.bashrc ~/.old_dotfiles/.bashrc
@@ -32,8 +29,7 @@ ln -s ~/.dotfiles/bash/bashrc ~/.bashrc
 ln -s ~/.dotfiles/bash/bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/git/gitconfig ~/.gitconfig
 ln -s ~/.dotfiles/git/gitignore_global ~/.gitignore_global
-ln -s ~/.dotfiles/rvm/gemrc ~/.gemrc
-ln -s ~/.dotfiles/rvm/rvmrc ~/.rvmrc
+ln -s ~/.dotfiles/ruby/gemrc ~/.gemrc
 ln -s ~/.dotfiles/vim/vimrc ~/.vimrc
 ln -s ~/.dotfiles/vim/gvimrc ~/.gvimrc
 ln -s ~/.dotfiles/zsh/zlogin ~/.zlogin

@@ -23,12 +23,6 @@ goodmorning() {
   npm cache clean
   echo "Updating Node packages"
   npm update -g
-  echo "updating RVM"
-  rvm get head
-  echo "cleaning up RVM"
-  rvm cleanup all
-  rm ~/.rvmrc
-  ln -s ~/.dotfiles/rvm/rvmrc ~/.rvmrc
   echo "Good to go!"
 }
 

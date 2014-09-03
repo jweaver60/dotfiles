@@ -43,13 +43,16 @@ DEFAULT_USER="jacob@mothership"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git rvm)
+plugins=(git rbenv)
 
 # source some files
 source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles/zsh/alias
 source ~/.dotfiles/zsh/functions
 source ~/.dotfiles/zsh/python
+
+# rbenv init
+eval "$(rbenv init -)"
 
 # Gruvbox color correction
 ~/.vim/bundle/gruvbox/gruvbox_256palette_osx.sh
