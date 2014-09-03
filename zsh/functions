@@ -26,15 +26,6 @@ goodmorning() {
   echo "Good to go!"
 }
 
-# Support for Sublime command from terminal
-SUBLIME_BIN="/Applications/Sublime Text.app/Contents/SharedSupport/bin"
-SUBLIME_CMD="subl"
-if [ -x "${SUBLIME_BIN}/${SUBLIME_CMD}" ]; then
-	  export PATH="${SUBLIME_BIN}":$PATH
-	  export VISUAL="${SUBLIME_CMD} -w";
-	  export EDITOR="$VISUAL";
-fi
-
 pstotal() {
   ps -axm -o "rss,comm" | awk 'BEGIN { s=0;}; {s=s+$1;}; END { printf("%.2f GB\n", (s/1024.0/1024));}'
 }
