@@ -2,7 +2,7 @@
 	name = Jacob Weaver
 	email = jweaver60@gmail.com
 [core]
-	excludesfile = /Users/jacob/.gitignore_global
+	excludesfile = /Users/Admin/.gitignore_global
 [push]
 	default = simple
 [alias]
