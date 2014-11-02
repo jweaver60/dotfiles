@@ -23,6 +23,7 @@ goodmorning() {
   npm cache clean
   echo "Updating Node packages"
   npm install -g npm@latest
+  npm update -g
   echo "Good to go!"
 }
 
