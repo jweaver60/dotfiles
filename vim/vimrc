@@ -58,6 +58,7 @@ Plugin 'spf13/PIV'
 Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'beyondwords/vim-twig'
 Plugin 'derekwyatt/vim-scala'
+Plugin 'mxw/vim-jsx'
 
 " Git
 Plugin 'tpope/vim-fugitive'
