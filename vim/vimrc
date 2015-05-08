@@ -59,6 +59,9 @@ Plugin 'arnaud-lb/vim-php-namespace'
 Plugin 'beyondwords/vim-twig'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'mxw/vim-jsx'
+Plugin 'othree/yajs.vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'carlosgaldino/elixir-snippets'
 
 " Git
 Plugin 'tpope/vim-fugitive'
