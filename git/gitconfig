@@ -1,8 +1,8 @@
 [user]
-	name = 
-	email = 
+	name = Jake Weaver
+	email = jweaver60@gmail.com
 [core]
-	excludesfile = /Users/jake/.gitignore_global
+	excludesfile = /Users/jacob/.gitignore_global
 [push]
 	default = simple
 [alias]
