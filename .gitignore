@@ -1,1 +1,4 @@
 .oh-my-zsh/
+emacs/*
+!emacs/Cask
+!emacs/init.el
