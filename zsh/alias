@@ -5,6 +5,9 @@ alias jw="cd ~/Projects/jacobweaver"
 alias nicquid="cd ~/Projects/nicquid"
 alias cards="cd ~/Projects/cards"
 
+# Emacs
+alias em="open -a Emacs"
+
 # PHP Aliases
 alias artisan="php artisan"
 alias phpunit="vendor/bin/phpunit"
