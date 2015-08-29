@@ -77,3 +77,11 @@
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
+
+;; alchemist mode config
+(setq alchemist-iex-program-name "/usr/local/bin/iex")
+(setq alchemist-key-command-prefix (kbd "C-c ,"))
+
+;; exec path from shell config
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))

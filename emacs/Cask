@@ -10,6 +10,7 @@
 (depends-on "enh-ruby-mode")
 (depends-on "evil-smartparens")
 (depends-on "evil-visual-mark-mode")
+(depends-on "exec-path-from-shell")
 (depends-on "magit")
 (depends-on "material-theme")
 (depends-on "multiple-cursors")
