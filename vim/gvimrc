@@ -1,4 +1,4 @@
-set guifont=Source\ Code\ Pro\ for\ Powerline:h15
+set guifont=Fira\ Code:h15
 colorscheme peacock
 let g:airline_theme = 'base16'
 autocmd VimEnter * :AirlineRefresh
