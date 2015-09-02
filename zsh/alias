@@ -47,3 +47,7 @@ alias space="du -sh"
 # Other good things to have
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias htd="/Applications/MAMP/htdocs"
+
+# Emacs
+alias eminit="open -a Emacs ~/.emacs.d/init.el"
+alias em="open -a Emacs"

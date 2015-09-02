@@ -3,5 +3,5 @@
 .ruby-version
 .ruby-gemset
 *.swp
-.idea/
+.idea
 
