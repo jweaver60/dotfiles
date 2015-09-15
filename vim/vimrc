@@ -14,6 +14,7 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin time
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
+Plugin 'vim-scripts/CSApprox'
 
 " Snippets
 Plugin 'Shougo/neocomplcache'
@@ -70,6 +71,7 @@ Plugin 'mhinz/vim-signify'
 " Themes
 Plugin 'daylerees/colour-schemes', { 'rtp': 'vim/' }
 Plugin 'morhetz/gruvbox'
+Plugin 'farfanoide/vim-facebook'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -101,7 +103,7 @@ let g:user_emmet_leader_key=','         " emmet leader key is ctrl-z
 let g:neocomplcache_enable_at_startup = 1   " enable neocomplcache on start
 let g:autoclose_vim_commentmode = 1         " Don't autoclose in vim files
 let g:bufferline_echo = 0                   " No bufferline below airline
-
+let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 " set some useful options
 set number                     " show numbers
 set nospell                    " no spell checking

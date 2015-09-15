@@ -44,6 +44,9 @@ alias irc="irssi -c freenode -n definiv"
 alias psall="ps -axm -o 'rss,comm'"
 alias space="du -sh"
 
+# Homestead commands
+alias vm="cd ~/Homestead && vagrant ssh"
+
 # Other good things to have
 alias cpwd="pwd | tr -d '\n' | pbcopy"
 alias htd="/Applications/MAMP/htdocs"
