@@ -34,3 +34,11 @@ pstotal() {
 psover() {
   ps -axm -o "rss,comm" | awk 'BEGIN { c=0;s=0;}; ($1 > 100000) {c=c+1;s=s+$1;}; END { printf("%.2f GB from %d processes\n", (s/1024.0/1024),c);}'
 }
+
+cdsearch() {
+  find ~/Library/Developer/CoreSimulator/Devices -name $1.sqlite
+}
+
+railsbad() {
+  rails g "$@" --no-helper --no-test-framework
+}
