@@ -39,28 +39,23 @@ Plugin 'tpope/vim-rails'
 """"""" Elixir
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'slashmili/alchemist.vim'
-Plugin 'carlosgaldino/elixir-snippets'
 
 """"""" Elm
 Plugin 'lambdatoast/elm.vim'
 Plugin 'ElmCast/elm-vim'
 
 """"""" JavaScript
-Plugin 'claco/jasmine.vim'
 Plugin 'elzr/vim-json'
 Plugin 'jelera/vim-javascript-syntax'
-Plugin 'mxw/vim-jsx'
 Plugin 'othree/yajs.vim'
 Plugin 'othree/javascript-libraries-syntax.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'Shutnik/jshint2.vim'
-Plugin 'mtscout6/vim-cjsx'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'mxw/vim-jsx'
+let g:jsx_ext_required = 0
 
 """"""" Web Development
-Plugin 'aaronjensen/vim-sass-status'
 Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'groenewege/vim-less'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'lukaszb/vim-web-indent'
 Plugin 'othree/html5.vim'
@@ -81,32 +76,54 @@ Plugin 'ekalinin/Dockerfile.vim'
 """"" End Filetypes ========
 
 """"" Utilities ============
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'vim-scripts/CSApprox'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'spf13/vim-autoclose'
 Plugin 'tpope/vim-surround'
 Plugin 'terryma/vim-multiple-cursors'
-Plugin 'Shougo/neocomplcache'
+Plugin 'mileszs/ack.vim'
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+Plugin 'Shougo/neocomplete'
 Plugin 'Shougo/neosnippet'
 Plugin 'Shougo/neosnippet-snippets'
-Plugin 'honza/vim-snippets'
+let g:neocomplete#enable_at_startup = 1   " enable neocomplete on start
+let g:neocomplete#enable_auto_select = 1
+
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_elixir = {
+    \ 'ctagstype' : 'elixir',
+    \ 'kinds' : [
+        \ 'f:functions',
+        \ 'functions:functions',
+        \ 'c:callbacks',
+        \ 'd:delegates',
+        \ 'e:exceptions',
+        \ 'i:implementations',
+        \ 'a:macros',
+        \ 'o:operators',
+        \ 'm:modules',
+        \ 'p:protocols',
+        \ 'r:records'
+    \ ]
+\ }
+
 Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'amirh/HTML-AutoCloseTag'
-Plugin 'vim-scripts/sessionman.vim'
-Plugin 'Lokaltog/vim-easymotion'
 Plugin 'mattn/emmet-vim'
+let g:user_emmet_leader_key=','             " emmet leader key is comma
+
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-repeat'
-Plugin 'bling/vim-bufferline'
-Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'godlygeek/tabular'
 
 Plugin 'scrooloose/syntastic' " Syntax highlighting
 let g:syntastic_mode_map = { "mode": "passive:",
                            \ "passive_filetypes": ["java", "html", "css", "scss"] }
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:elm_syntastic_show_warnings = 1
+
 Plugin 'tomtom/tcomment_vim' " By default, `gc` will toggle comments
 
 Plugin 'janko-m/vim-test' " run tests with varying granularity
@@ -191,7 +208,7 @@ let g:ctrlp_max_height = 40            " restrict match list to a maxheight of 4
 let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
 let g:ctrlp_max_files = 0              " no restriction on results/file list
 let g:ctrlp_working_path_mode = ''
-let g:ctrlp_dont_split = 'NERD_tree_2' " don't split these buffers
+let g:ctrlp_dont_split = 'NERD' " don't split these buffers
 let g:ctrlp_custom_ignore = {
      \ 'dir': '\v[\/]\.(git|hg|svn|gitkeep)$',
      \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
@@ -298,15 +315,11 @@ map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
 
-map <C-N> :vsp .<CR>
+map <Leader>vs :vsp .<CR>
 map <C-C> :q<CR>
 
 " Redraw my screen
 nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
-
-" Comment and uncomment blocks with # or -#
-vnoremap # :s#^#\##<cr>
-vnoremap -# :s#^\###<cr>
 
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>n :NERDTreeToggle<CR>
@@ -369,11 +382,8 @@ augroup vimrc
     \|  endif
 
 let g:indent_guides_enable_on_vim_startup=0 " no indent guides
-let g:user_emmet_leader_key=','         " emmet leader key is ctrl-z
-let g:neocomplcache_enable_at_startup = 1   " enable neocomplcache on start
 let g:autoclose_vim_commentmode = 1         " Don't autoclose in vim files
 let g:bufferline_echo = 0                   " No bufferline below airline
-let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : '', 'sp' : '' }
 
 " omnicomplete and file recognition
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

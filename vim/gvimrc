@@ -1,5 +1,0 @@
-set guifont=Source\ Code\ Pro\ for\ Powerline:h15
-colorscheme facebook
-let g:airline_theme = 'base16'
-autocmd VimEnter * :AirlineRefresh
-hi Directory guifg=#22977F ctermfg=blue
