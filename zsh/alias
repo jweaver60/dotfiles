@@ -1,9 +1,5 @@
 # Aliases for my things
 
-# Vim/Neovim
-alias vim='nvim'
-alias nconfig='nvim ~/.config/nvim/init.vim'
-
 # PHP Aliases
 alias artisan="php artisan"
 alias phpunit="vendor/bin/phpunit"
