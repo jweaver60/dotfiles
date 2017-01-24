@@ -51,5 +51,8 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source ~/.dotfiles/zsh/alias
 source ~/.dotfiles/zsh/functions
+source ~/.secrets
 source ~/.dotfiles/zsh/python
 source dnvm.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

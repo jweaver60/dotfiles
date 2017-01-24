@@ -1,429 +1,190 @@
-" Table of Contents
-"
-" 1) Vundle
-"   1.1) Filetypes
-"   1.2) Utilities
-"   1.3) UI Plugins
-"   1.4) Code Navigation
-" 2) UI Tweaks
-" 3) Keyboard shortcut Setup
-" 4) vim environment handling tweaks (needs work / renaming)
-" 5) File navigation
-" 6) Auto Commands
-"   6.1) Filetypes
-"   6.2) Normalization
-" 7) Project-Specific items
-" 8) nvim support
-" 9) New things I learn
-
-""" Setup Vundle ===========
-set nocompatible
+scriptencoding utf-8
 filetype off
+set mouse = ""
 
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Sane tabs
+set tabstop=2
+set softtabstop=2
+set expandtab
+set shiftwidth=2
+set formatoptions=tcrq
+set textwidth=80
+set title
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Use comma for leader
+let g:mapleader=','
+let g:maplocalleader='\\'
 
-" Set leader
-let mapleader=","
+set number
+set omnifunc=syntaxcomplete#Complete
 
-""""" Filetypes ============
+" Search settings
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+map <CR> :noh<CR>
 
-""""""" Ruby
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'tpope/vim-rails'
+" Highlight cursor position
+" set cursorline
+" set cursorcolumn
 
-""""""" Elixir
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'slashmili/alchemist.vim'
-
-""""""" Elm
-Plugin 'lambdatoast/elm.vim'
-Plugin 'ElmCast/elm-vim'
-
-""""""" JavaScript
-Plugin 'elzr/vim-json'
-Plugin 'jelera/vim-javascript-syntax'
-Plugin 'othree/yajs.vim'
-Plugin 'othree/javascript-libraries-syntax.vim'
-Plugin 'pangloss/vim-javascript'
-Plugin 'Shutnik/jshint2.vim'
-Plugin 'mxw/vim-jsx'
-let g:jsx_ext_required = 0
-
-""""""" Web Development
-Plugin 'cakebaker/scss-syntax.vim'
-Plugin 'hail2u/vim-css3-syntax'
-Plugin 'lukaszb/vim-web-indent'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-haml'
-
-""""""" Markdown
-" Use fenced code blocks in markdown
-Plugin 'jtratner/vim-flavored-markdown'
-let g:markdown_fenced_languages=['ruby', 'javascript', 'elixir', 'clojure', 'sh', 'html', 'sass', 'scss', 'haml', 'erlang']
-" Markdown is now included in vim, but by default .md is read as Modula-2
-" files. This fixes that, because I don't ever edit Modula-2 files.
-autocmd BufNewFile,BufReadPost *.md,*.markdown set filetype=markdown
-autocmd FileType markdown set tw=80
-
-""""""" Dockerfile
-Plugin 'ekalinin/Dockerfile.vim'
-
-""""" End Filetypes ========
-
-""""" Utilities ============
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'tpope/vim-surround'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'mileszs/ack.vim'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+""" Undo #undo
+" undofile - This allows you to use undos after exiting and restarting
+" This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
+" :help undo-persistence
+" This is only present in 7.3+
+if isdirectory($HOME . '/.config/nvim/undo') == 0
+  :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
 endif
+set undodir=./.vim-undo//
+set undodir+=~/.vim/undo//
+set undofile
 
-Plugin 'Shougo/neocomplete'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-let g:neocomplete#enable_at_startup = 1   " enable neocomplete on start
-let g:neocomplete#enable_auto_select = 1
+call plug#begin('~/.config/nvim/plugged')
+" Multi-lang support
+Plug 'sheerun/vim-polyglot'
 
-Plugin 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_elixir = {
+Plug 'neomake/neomake'
+  augroup localneomake
+    autocmd! BufWritePost * Neomake
+  augroup END
+  let g:neomake_markdown_enabled_makers = []
+
+"Phoenix project navigation
+Plug 'c-brenn/phoenix.vim'
+Plug 'tpope/vim-projectionist'
+
+Plug 'slashmili/alchemist.vim'
+  let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+
+Plug 'powerman/vim-plugin-AnsiEsc'
+
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'tomtom/tcomment_vim'
+  " By default, `gc` will toggle comments
+
+Plug 'janko-m/vim-test'
+  nmap <silent> <leader>t :TestNearest<CR>
+  nmap <silent> <leader>T :TestFile<CR>
+  nmap <silent> <leader>a :TestSuite<CR>
+  nmap <silent> <leader>l :TestLast<CR>
+  nmap <silent> <leader>g :TestVisit<CR>
+  let g:test#strategy = 'neovim'
+
+" Vim git
+Plug 'tpope/vim-fugitive'
+
+" Fuzzy finder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+  let $FZF_DEFAULT_COMMAND = 'ag -ignore-dir=priv/static -g ""'
+  let g:fzf_layout = { 'window': 'enew' }
+  nnoremap <silent> <C-P> :FZF<CR>
+  nnoremap <silent> <leader>a :Ag<CR>
+  augroup localfzf
+    autocmd!
+    autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
+    autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
+  augroup END
+
+" Gundo fork with neovim support
+Plug 'simnalamburt/vim-mundo'
+  noremap <F5> :MundoToggle<CR>
+
+Plug 'mileszs/ack.vim'
+  if executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+  end
+
+Plug 'Raimondi/delimitMate'
+Plug 'godlygeek/tabular'
+Plug 'mattn/emmet-vim'
+  let g:user_emmet_leader_key=','
+
+Plug 'majutsushi/tagbar'
+  nmap <F8> :TagbarToggle<CR>
+  let g:tagbar_type_elixir = {
     \ 'ctagstype' : 'elixir',
     \ 'kinds' : [
-        \ 'f:functions',
-        \ 'functions:functions',
-        \ 'c:callbacks',
-        \ 'd:delegates',
-        \ 'e:exceptions',
-        \ 'i:implementations',
-        \ 'a:macros',
-        \ 'o:operators',
-        \ 'm:modules',
-        \ 'p:protocols',
-        \ 't:tests',
-        \ 'r:records'
+      \ 'f:functions',
+      \ 'functions:functions',
+      \ 'c:callbacks',
+      \ 'd:delegates',
+      \ 'e:exceptions',
+      \ 'i:implementations',
+      \ 'a:macros',
+      \ 'o:operators',
+      \ 'm:modules',
+      \ 'p:protocols',
+      \ 'r:records',
+      \ 't:test'
     \ ]
-\ }
+    \ }
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'mattn/emmet-vim'
-let g:user_emmet_leader_key=','             " emmet leader key is comma
+Plug 'dietsche/vim-lastplace'
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'tpope/vim-repeat'
-Plugin 'godlygeek/tabular'
+Plug 'tomasr/molokai'
 
-Plugin 'scrooloose/syntastic' " Syntax highlighting
-let g:syntastic_mode_map = { "mode": "passive:",
-                           \ "passive_filetypes": ["java", "html", "css", "scss"] }
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:elm_syntastic_show_warnings = 1
+Plug 'tpope/vim-surround'
 
-Plugin 'tomtom/tcomment_vim' " By default, `gc` will toggle comments
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+  let g:airline_theme = 'luna'
+  let g:bufferline_echo = 0
+  let g:airline_powerline_fonts = 1
+  let g:airline_enable_branch = 1
+  let g:airline_enable_systastic = 1
+  let g:airline_branch_prefix = '⎇ '
+  let g:airline_paste_symbol = '∥'
+  let g:airline_left_sep=''
+  let g:airline_right_sep=''
+  let g:airline#extensions#tabline#enabled = 0
 
-Plugin 'janko-m/vim-test' " run tests with varying granularity
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
+" Code completion
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'christoomey/vim-tmux-navigator' " Navigate between tmux panes and vim splits seamlessly
-Plugin 'tpope/vim-fugitive'             " Git support
-Plugin 'vim-scripts/SyntaxRange'        " Allow ranges within a file to define different syntax mappings
-Plugin 'mattn/webapi-vim'               " vim interface to web apis. Required for gist-vim
-Plugin 'mattn/gist-vim'                 " Create gists trivially from buffer, selection, etc.
-let g:gist_open_browser_after_post = 1
-let g:gist_detect_filetype = 2
-let g:gist_post_private = 1
-if has('macunix')
-  let g:gist_clip_command = 'pbcopy'
-endif
-
-Plugin 'sjl/gundo.vim'
-noremap <F5> :GundoToggle<CR>
-""""" End Utilities =======
-
-""""" UI Plugins ==========
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-set laststatus=2
-let g:airline_theme='luna'
-let g:airline_powerline_fonts=1
-let g:airline_enable_branch=1
-let g:airline_enable_syntastic=1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_linecolumn_prefix = '␊ '
-let g:airline_linecolumn_prefix = '␤ '
-let g:airline_linecolumn_prefix = '¶ '
-let g:airline_branch_prefix = '⎇ '
-let g:airline_paste_symbol = 'ρ'
-let g:airline_paste_symbol = 'Þ'
-let g:airline_paste_symbol = '∥'
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_mode_map = {
-      \ 'n' : 'N',
-      \ 'i' : 'I',
-      \ 'R' : 'REPLACE',
-      \ 'v' : 'VISUAL',
-      \ 'V' : 'V-LINE',
-      \ 'c' : 'CMD   ',
-      \ '': 'V-BLCK',
-      \ }
-
-if has('statusline')
-  set statusline=%<%f\                     " Filename
-  set statusline+=%w%h%m%r                 " Options
-  set statusline+=%{fugitive#statusline()} " Git Hotness
-  set statusline+=\ [%{&ff}/%Y]            " Filetype
-  set statusline+=\ [%{getcwd()}]          " Current dir
-  set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
-Plugin 'mhinz/vim-signify'              " add signs on gutter for git
-Plugin 'edkolev/tmuxline.vim'           " add airline to tmux
-let g:tmuxline_powerline_separators = 0 " Disable powerline separators in tmux
-Plugin 'dandorman/vim-colors'
-Plugin 'roman/golden-ratio'
-""""" End UI Plugins ======
-
-""""" Code Navigation =====
-Plugin 'ctrlpvim/ctrlp.vim'
-let g:ctrlp_match_window_bottom = 1    " Show at bottom of window
-let g:ctrlp_working_path_mode = 'ra'   " Our working path is our VCS project or the current directory
-let g:ctrlp_mru_files = 1              " Enable most recently used files feature
-let g:ctrlp_jump_to_buffer = 2         " Jump to tab AND buffer if already open
-let g:ctrlp_open_new_file = 'v'        " open selections in a vertical split
-let g:ctrlp_open_multiple_files = 'vr' " opens multiple selections in vertical splits to the right
-let g:ctrlp_arg_map = 0
-let g:ctrlp_dotfiles = 0               " do not show (.) dotfiles in match list
-let g:ctrlp_showhidden = 0             " do not show hidden files in match list
-let g:ctrlp_split_window = 0
-let g:ctrlp_max_height = 40            " restrict match list to a maxheight of 40
-let g:ctrlp_use_caching = 0            " don't cache, we want new list immediately each time
-let g:ctrlp_max_files = 0              " no restriction on results/file list
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_dont_split = 'NERD_tree_1' " don't split these buffers
-let g:ctrlp_custom_ignore = {
-     \ 'dir': '\v[\/]\.(git|hg|svn|gitkeep)$',
-     \ 'file': '\v\.(exe|so|dll|log|gif|jpg|jpeg|png|psd|DS_Store|ctags|gitattributes)$'
-     \ }
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-e>', '<c-space>'],
-      \ 'AcceptSelection("h")': ['<c-x>', '<c-cr>', '<c-s>'],
-      \ 'AcceptSelection("t")': ['<c-t>'],
-      \ 'AcceptSelection("v")': ['<cr>'],
-      \ 'PrtSelectMove("j")':   ['<c-j>', '<down>', '<s-tab>'],
-      \ 'PrtSelectMove("k")':   ['<c-k>', '<up>', '<tab>'],
-      \ 'PrtHistory(-1)':       ['<c-n>'],
-      \ 'PrtHistory(1)':        ['<c-p>'],
-      \ 'ToggleFocus()':        ['<c-tab>'],
-      \ }
-
-""""" End Code Navigation ==
-
-call vundle#end() " required for Vundle
-
-" Turn on plugins, indentation, etc.
-filetype plugin indent on
-
-" All of your Plugins must be added before the following line
-
-" To ignore plugin indent changes, instead use:
-" filetype plugin on
-
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-
-" see :h vundle for more details or wiki for FAQ
-""" End Setup Vundle ======
-
-""" UI Tweaks =============
-set number
-set t_Co=256
-
-" Turn off menu in gui
-set guioptions="agimrLt"
-set mouse=""
-
-" in case t_Co alone doesn't work, try this:
-let &t_AB="\e[48;5;%dm"
-let &t_AF="\e[38;5;%dm"
-
-set background=dark
-syntax on
-colorscheme molokai
-set enc=utf-8
-set term=screen-256color
-let $TERM='screen-256color'
-
-set cul " highlight current line
-set cuc " highlight current column
-
-" change vim cursor depending on the mode
-if has("unix")
-  let s:uname = system("uname -s")
-  if s:uname == "Darwin\n"
-    " OS X iTerm 2 settings
-    if exists('$TMUX')
-      let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-      let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-    else
-      let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-      let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-    endif
-  else
-    " linux settings (gnome-terminal)
-    " TODO: Presently in GNOME3 terminal seems to ignore this gconf setting.
-    " Need to open a bug with them...
-    if has("autocmd")
-      au InsertEnter * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-      au InsertLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape block"
-      au VimLeave * silent execute "!gconftool-2 --type string --set /apps/gnome-terminal/profiles/Default/cursor_shape ibeam"
-    endif
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  let g:deoplete#enable_at_startup = 1
+  if !exists('g:deoplete#omni#input_patterns')
+    let g:deoplete#omni#input_patterns = {}
   endif
-endif
+  " use tab for completion (not working with UltiSnips currently)
+  inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
+  inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 
-" Show trailing whitespace and spaces before a tab:
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
+call plug#end()
 
-" Open files where we left off
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-        \| exe "normal! g'\"" | endif
-endif
-""" End UI Tweaks =========
+set termguicolors
+set background=dark
+colorscheme molokai
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
-""" Keyboard Shortcuts ====
-nnoremap <cr> :nohlsearch<cr>
+" Shortcuts
+nnoremap <leader>w :w<CR>
+noremap <C-c> :q<CR>
 
-" NO ARROW KEYS
+set scrolloff=5
+vnoremap < <gv
+vnoremap > >gv
+
 map <Left>  :echo "no!"<cr>
 map <Right> :echo "no!"<cr>
 map <Up>    :echo "no!"<cr>
 map <Down>  :echo "no!"<cr>
 
-map <Leader>vs :vsp .<CR>
-map <C-C> :q<CR>
+set splitbelow
+set splitright
 
-" Redraw my screen
-nnoremap U :syntax sync fromstart<cr>:redraw!<cr>
+" Navigate splits with C-h,j,k,l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+nnoremap <silent> <BS> <C-w>h
 
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>n :NERDTreeToggle<CR>
-nmap <silent> <leader>/ :set invhlsearch<CR>
-vnoremap < <gv
-vnoremap > >gv
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-xmap <C-k> <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-""" End Keyboard Shortcut =
-
-""" Vim Env Tweaks ========
-set undodir=~/.vim/undo//      " set undo directory
-set directory=~/.vim/swap//    " set swap directory
-set backupdir=~/.vim/backup//  " set backup directory
-set viewdir=~/.vim/views//     " set views directory
-set re=1                       " Revert to old RegExp engine for Ruby
-set encoding=utf-8
-set scrolloff=5                " stay 5 lines from top or bottom
-set tabstop=2                  " 2 space tabs
-set shiftwidth=2               " 2 space tabs
-set softtabstop=2              " 2 space tabs
-set expandtab                  " make tabs
-set hlsearch                   " highlight search results
-set incsearch                  " increment through search results
-set ignorecase                 " ignore cases in search
-set smartcase
-set nospell                    " no spell checking
-set fillchars+=stl:\ ,stlnc:\  " for powerline
-set autoindent                 " smart indentation
-set copyindent                 " copy indentation when autoindenting
-set backspace=indent,eol,start " make backspace normal
-set smartindent                " be smart about indenting
-set showmatch                  " show matching in search
-set linespace=6                " nice linespacing
-set foldmethod=manual          " manually set folds
-set visualbell                 " don't beep
-set noerrorbells               " don't beep
-
-" Save and load fold settings automatically
-" Reference: http://dotfiles.org/~tsukkee/.vimrc
-" Don't save options.
-set viewoptions-=options
-augroup vimrc
-    autocmd BufWritePost *
-    \   if expand('%') != '' && &buftype !~ 'nofile'
-    \|      mkview
-    \|  endif
-    autocmd BufWinEnter *
-    \   if expand('%') != '' && &buftype !~ 'nofile'
-    \|      silent loadview
-    \|  endif
-
-let g:indent_guides_enable_on_vim_startup=0 " no indent guides
-
-" omnicomplete and file recognition
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-""" End Vim Env Tweaks ====
-
-""" File navigation ====================
-" case insensitive highlight matches in normal/visual mode
-nnoremap / /\v
-vnoremap / /\v
-""" End File navigation ================
-
-""" Auto Commands ======================
-""""" Filetypes ========================
-augroup erlang
-  au!
-  au BufNewFile,BufRead *.erl setlocal tabstop=4
-  au BufNewFile,BufRead *.erl setlocal shiftwidth=4
-  au BufNewFile,BufRead *.erl setlocal softtabstop=4
-  au BufNewFile,BufRead relx.config setlocal filetype=erlang
-augroup END
-
-augroup dotenv
-  au!
-  au BufNewFile,BufRead *.envrc setlocal filetype=sh
-augroup END
-""""" End Filetypes ====================
-
-""""" Normalization ====================
 " Delete trailing whitespace on save
 func! DeleteTrailingWS()
   exe "normal mz"
@@ -431,22 +192,3 @@ func! DeleteTrailingWS()
   exe "normal `z"
 endfunc
 au BufWrite * silent call DeleteTrailingWS()
-""""" End Normalization ================
-""" End Auto Commands ==================
-
-""" Project-Specific Items =============
-" Enable per-project vimrcs
-set exrc   " enable per-directory .vimrc files
-set secure " disable unsafe commands in local .vimrc files
-""" End Project-Specific Items =========
-
-""" nvim support =======================
-if has('nvim')
-  set unnamedclip
-endif
-""" nvim support =======================
-
-""" New things I learn =================
-command TIL tabe~/Documents/TIL.md
-""" End New things I learn =============
-
