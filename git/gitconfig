@@ -2,7 +2,7 @@
 	name = Jake Weaver
 	email = jake.weaver@oodle.io
 [core]
-	excludesfile = /Users/jacob/.gitignore_global
+	excludesfile = /Users/jake/.gitignore_global
 [push]
 	default = simple
 [alias]
