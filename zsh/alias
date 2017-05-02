@@ -6,7 +6,7 @@ alias phpunit="vendor/bin/phpunit"
 
 # MySQL aliases
 alias newdb="mysqladmin -uroot create"
-alias dropdb="mysqladmin -uroot drop"
+alias deletedb="mysqladmin -uroot drop"
 alias sqlog="mysql -uroot"
 alias mysqlstart="mysql.server start"
 alias mysqlstop="mysql.server stop"

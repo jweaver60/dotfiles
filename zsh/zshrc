@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="miloshadzic"
-ZSH_THEME="miloshadzic"
+ZSH_THEME="robbyrussell"
 export ANDROID_HOME=/usr/local/opt/android-sdk
 
 # Example aliases
@@ -46,6 +46,8 @@ DEFAULT_USER="jacob@mothership"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(git)
+
+[[ -s "$HOME/.kiex/scripts/kiex" ]] && source "$HOME/.kiex/scripts/kiex"
 
 # source some files
 source $ZSH/oh-my-zsh.sh

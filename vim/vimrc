@@ -46,68 +46,75 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'sheerun/vim-polyglot'
 
 Plug 'neomake/neomake'
-  augroup localneomake
-    autocmd! BufWritePost * Neomake
-  augroup END
-  let g:neomake_markdown_enabled_makers = []
+augroup localneomake
+  autocmd! BufWritePost * Neomake
+augroup END
+let g:neomake_markdown_enabled_makers = []
 
 "Phoenix project navigation
 Plug 'c-brenn/phoenix.vim'
 Plug 'tpope/vim-projectionist'
 
 Plug 'slashmili/alchemist.vim'
-  let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 
 Plug 'powerman/vim-plugin-AnsiEsc'
 
 Plug 'editorconfig/editorconfig-vim'
 
 Plug 'tomtom/tcomment_vim'
-  " By default, `gc` will toggle comments
+" By default, `gc` will toggle comments
 
 Plug 'janko-m/vim-test'
-  nmap <silent> <leader>t :TestNearest<CR>
-  nmap <silent> <leader>T :TestFile<CR>
-  nmap <silent> <leader>a :TestSuite<CR>
-  nmap <silent> <leader>l :TestLast<CR>
-  nmap <silent> <leader>g :TestVisit<CR>
-  let g:test#strategy = 'neovim'
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+let g:test#strategy = 'neovim'
 
 " Vim git
 Plug 'tpope/vim-fugitive'
 
+" Go to file
+Plug 'ctrlpvim/ctrlp.vim'
+  let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(beam|exe|dll)$',
+    \ }
+
 " Fuzzy finder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-  let $FZF_DEFAULT_COMMAND = 'ag -ignore-dir=priv/static -g ""'
-  let g:fzf_layout = { 'window': 'enew' }
-  nnoremap <silent> <C-P> :FZF<CR>
-  nnoremap <silent> <leader>a :Ag<CR>
-  augroup localfzf
-    autocmd!
-    autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
-    autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
-  augroup END
+let $FZF_DEFAULT_COMMAND = 'ag -ignore-dir=priv/static -g ""'
+let g:fzf_layout = { 'window': 'enew' }
+nnoremap <silent> <C-F> :FZF<CR>
+nnoremap <silent> <leader>a :Ag<CR>
+augroup localfzf
+  autocmd!
+  autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
+  autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
+augroup END
 
 " Gundo fork with neovim support
 Plug 'simnalamburt/vim-mundo'
-  noremap <F5> :MundoToggle<CR>
+noremap <F5> :MundoToggle<CR>
 
 Plug 'mileszs/ack.vim'
-  if executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-  end
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+end
 
 Plug 'Raimondi/delimitMate'
 Plug 'godlygeek/tabular'
 Plug 'mattn/emmet-vim'
-  let g:user_emmet_leader_key=','
+let g:user_emmet_leader_key=','
 
 Plug 'majutsushi/tagbar'
-  nmap <F8> :TagbarToggle<CR>
-  let g:tagbar_type_elixir = {
-    \ 'ctagstype' : 'elixir',
-    \ 'kinds' : [
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_type_elixir = {
+      \ 'ctagstype' : 'elixir',
+      \ 'kinds' : [
       \ 'f:functions',
       \ 'functions:functions',
       \ 'c:callbacks',
@@ -120,8 +127,8 @@ Plug 'majutsushi/tagbar'
       \ 'p:protocols',
       \ 'r:records',
       \ 't:test'
-    \ ]
-    \ }
+      \ ]
+      \ }
 
 Plug 'dietsche/vim-lastplace'
 
@@ -131,16 +138,16 @@ Plug 'tpope/vim-surround'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-  let g:airline_theme = 'luna'
-  let g:bufferline_echo = 0
-  let g:airline_powerline_fonts = 1
-  let g:airline_enable_branch = 1
-  let g:airline_enable_systastic = 1
-  let g:airline_branch_prefix = '⎇ '
-  let g:airline_paste_symbol = '∥'
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
-  let g:airline#extensions#tabline#enabled = 0
+let g:airline_theme = 'luna'
+let g:bufferline_echo = 0
+let g:airline_powerline_fonts = 11
+let g:airline_enable_branch = 1
+let g:airline_enable_systastic = 1
+let g:airline_branch_prefix = '⎇ '
+let g:airline_paste_symbol = '∥'
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline#extensions#tabline#enabled = 0
 
 " Code completion
 Plug 'SirVer/ultisnips'
@@ -157,7 +164,6 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
-set termguicolors
 set background=dark
 colorscheme molokai
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1

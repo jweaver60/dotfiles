@@ -45,7 +45,6 @@ Plug 'honza/vim-snippets'
   let g:UltiSnipsJumpForwardTrigger="<C-b>"
   let g:UltiSnipsJumpBackwardTrigger="<C-z>"
 
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 
 Plug 'Raimondi/delimitMate'
 Plug 'tpope/vim-surround'
@@ -53,6 +52,10 @@ Plug 'mbbill/undotree'
   nnoremap <F5> :UndotreeToggle<CR>
 
 Plug 'godlygeek/tabular'
+
+Plug 'scrooloose/nerdtree'
+  let NERDTreeShowHidden=1
+  nnoremap <leader>n :NERDTreeToggle<CR>
 
 Plug 'majutsushi/tagbar'
   nmap <F8> :TagbarToggle<CR>
@@ -74,7 +77,6 @@ Plug 'majutsushi/tagbar'
     \ ]
     \ }
 
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-fugitive'
 
 Plug 'tomtom/tcomment_vim'
@@ -82,55 +84,36 @@ Plug 'tomtom/tcomment_vim'
 Plug 'mattn/emmet-vim'
   let g:user_emmet_leader_key=','
 
-Plug 'janko-m/vim-test'
-  nmap <silent> <leader>t :TestNearest<CR>
-  nmap <silent> <leader>T :TestFile<CR>
-  nmap <silent> <leader>a :TestSuite<CR>
-  nmap <silent> <leader>l :TestLast<CR>
-  nmap <silent> <leader>g :TestVisit<CR>
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-  let $FZF_DEFAULT_COMMAND = 'ag -ignore-dir=priv/static -g ""'
+  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
   let g:fzf_layout = { 'window': 'enew' }
   nnoremap <silent> <C-P> :FZF<CR>
   nnoremap <silent> <leader>a :Ag<CR>
+  nnoremap <leader>b :Buffers<CR>
   augroup localfzf
     autocmd!
     autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
     autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
   augroup END
 
-Plug 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(beam|exe|dll)$',
-    \ }
-
 Plug 'neomake/neomake'
   augroup localneomake
     autocmd! BufWritePost * Neomake
   augroup END
 
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist'
 Plug 'slashmili/alchemist.vim'
   let g:alchemist#elixir_erlang_src = '/usr/local/share/src'
 
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-  let g:airline_theme = 'luna'
-  let g:bufferline_echo = 0
-  let g:airline_powerline_fonts = 0
-  let g:airline_enable_branch = 1
-  let g:airline_enable_systastic = 1
-  let g:airline_branch_prefix = '⎇ '
-  let g:airline_paste_symbol = '∥'
-  let g:airline_left_sep=''
-  let g:airline_right_sep=''
-  let g:airline#extensions#tabline#enabled = 0
+Plug 'tpope/vim-rails'
+
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ }
 
 Plug 'tomasr/molokai'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
   let g:tmuxline_powerline_separators = 0
 
@@ -167,6 +150,23 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <silent> <BS> <C-w>h
+
+augroup filetypedetect
+  " always highlight Dockerfile correctly
+  au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+
+  " always highlight elixir config files
+  au BufNewFile,BufRead *.exs set filetype=elixir
+
+  " always highlight nginx conf files
+  au BufNewFile,BufRead docker-nginx.conf set filetype=nginx
+augroup END
+
+hi def link jsonKeyword Number
+hi def link jsonTest    Number
+hi def link jsonNumber  Function
+hi def link jsonString  Type
+hi def link jsonNull    String
 
 func! DeleteTrailingWS()
   exe "normal mz"
