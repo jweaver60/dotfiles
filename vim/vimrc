@@ -1,6 +1,6 @@
 scriptencoding utf-8
 filetype off
-set mouse = ""
+set mouse=a
 
 " Sane tabs
 set tabstop=2
@@ -25,133 +25,70 @@ set ignorecase
 set smartcase
 map <CR> :noh<CR>
 
-" Highlight cursor position
-" set cursorline
-" set cursorcolumn
-
-""" Undo #undo
-" undofile - This allows you to use undos after exiting and restarting
-" This, like swap and backups, uses .vim-undo first, then ~/.vim/undo
-" :help undo-persistence
-" This is only present in 7.3+
-if isdirectory($HOME . '/.config/nvim/undo') == 0
-  :silent !mkdir -p ~/.config/nvim/undo > /dev/null 2>&1
-endif
-set undodir=./.vim-undo//
-set undodir+=~/.vim/undo//
-set undofile
-
 call plug#begin('~/.config/nvim/plugged')
-" Multi-lang support
+
 Plug 'sheerun/vim-polyglot'
+  let g:polyglot_disabled = ['javascript']
+
+Plug 'othree/yajs.vim'
+
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+  let g:UltiSnipsExpandTrigger="<C-k>"
+  let g:UltiSnipsJumpForwardTrigger="<C-b>"
+  let g:UltiSnipsJumpBackwardTrigger="<C-z>"
+
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-surround'
+Plug 'mbbill/undotree'
+  nnoremap <F5> :UndotreeToggle<CR>
+
+Plug 'godlygeek/tabular'
+
+Plug 'scrooloose/nerdtree'
+  let NERDTreeShowHidden=1
+  nnoremap <leader>n :NERDTreeToggle<CR>
+
+Plug 'tpope/vim-fugitive'
+
+Plug 'tomtom/tcomment_vim'
+
+Plug 'mattn/emmet-vim'
+  let g:user_emmet_leader_key=','
+
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+  let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+  let g:fzf_layout = { 'window': 'enew' }
+  nnoremap <silent> <C-P> :FZF<CR>
+  nnoremap <silent> <leader>a :Ag<CR>
+  nnoremap <silent> <C-R> :BTags<CR>
+  nnoremap <leader>b :Buffers<CR>
+  augroup localfzf
+    autocmd!
+    autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
+    autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
+  augroup END
 
 Plug 'neomake/neomake'
 augroup localneomake
   autocmd! BufWritePost * Neomake
 augroup END
-let g:neomake_markdown_enabled_makers = []
-
-"Phoenix project navigation
-Plug 'c-brenn/phoenix.vim'
-Plug 'tpope/vim-projectionist'
 
 Plug 'slashmili/alchemist.vim'
-let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
+  let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
 
-Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'tpope/vim-rails'
 
-Plug 'editorconfig/editorconfig-vim'
-
-Plug 'tomtom/tcomment_vim'
-" By default, `gc` will toggle comments
-
-Plug 'janko-m/vim-test'
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
-let g:test#strategy = 'neovim'
-
-" Vim git
-Plug 'tpope/vim-fugitive'
-
-" Go to file
-Plug 'ctrlpvim/ctrlp.vim'
-  let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn)$',
-    \ 'file': '\v\.(beam|exe|dll)$',
-    \ }
-
-" Fuzzy finder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-let $FZF_DEFAULT_COMMAND = 'ag -ignore-dir=priv/static -g ""'
-let g:fzf_layout = { 'window': 'enew' }
-nnoremap <silent> <C-F> :FZF<CR>
-nnoremap <silent> <leader>a :Ag<CR>
-augroup localfzf
-  autocmd!
-  autocmd FileType fzf :tnoremap <buffer> <C-J> <C-J>
-  autocmd FileType fzf :tnoremap <buffer> <C-K> <C-K>
-augroup END
-
-" Gundo fork with neovim support
-Plug 'simnalamburt/vim-mundo'
-noremap <F5> :MundoToggle<CR>
-
-Plug 'mileszs/ack.vim'
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-end
-
-Plug 'Raimondi/delimitMate'
-Plug 'godlygeek/tabular'
-Plug 'mattn/emmet-vim'
-let g:user_emmet_leader_key=','
-
-Plug 'majutsushi/tagbar'
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_type_elixir = {
-      \ 'ctagstype' : 'elixir',
-      \ 'kinds' : [
-      \ 'f:functions',
-      \ 'functions:functions',
-      \ 'c:callbacks',
-      \ 'd:delegates',
-      \ 'e:exceptions',
-      \ 'i:implementations',
-      \ 'a:macros',
-      \ 'o:operators',
-      \ 'm:modules',
-      \ 'p:protocols',
-      \ 'r:records',
-      \ 't:test'
-      \ ]
+Plug 'itchyny/lightline.vim'
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"x":""}',
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '|', 'right': '|' }
       \ }
-
-Plug 'dietsche/vim-lastplace'
-
-Plug 'tomasr/molokai'
-
-Plug 'tpope/vim-surround'
-
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-let g:airline_theme = 'luna'
-let g:bufferline_echo = 0
-let g:airline_powerline_fonts = 11
-let g:airline_enable_branch = 1
-let g:airline_enable_systastic = 1
-let g:airline_branch_prefix = '⎇ '
-let g:airline_paste_symbol = '∥'
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#tabline#enabled = 0
-
-" Code completion
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
@@ -162,15 +99,29 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
   inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'tomasr/molokai'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'edkolev/tmuxline.vim'
+  let g:tmuxline_powerline_separators = 0
+
 call plug#end()
 
 set background=dark
 colorscheme molokai
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+set colorcolumn=81
+set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
 " Shortcuts
 nnoremap <leader>w :w<CR>
 noremap <C-c> :q<CR>
+
+set undodir=~/.config/nvim/undo//      " undo directory
+set directory=~/.config/nvim/swap//    " swap directory
+set backupdir=~/.config/nvim/backup//  " backup directory
+set viewdir=~/.config/nvim/views//     " views directory
+
+set wildignore+=*/node_modules/*,*/_build/*
 
 set scrolloff=5
 vnoremap < <gv
@@ -190,6 +141,23 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 nnoremap <silent> <BS> <C-w>h
+
+augroup filetypedetect
+  " always highlight Dockerfile correctly
+  au BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+
+  " always highlight elixir config files
+  au BufNewFile,BufRead *.exs set filetype=elixir
+
+  " always highlight nginx conf files
+  au BufNewFile,BufRead docker-nginx.conf set filetype=nginx
+augroup END
+
+hi def link jsonKeyword Number
+hi def link jsonTest    Number
+hi def link jsonNumber  Function
+hi def link jsonString  Type
+hi def link jsonNull    String
 
 " Delete trailing whitespace on save
 func! DeleteTrailingWS()

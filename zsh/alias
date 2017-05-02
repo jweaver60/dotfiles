@@ -1,47 +1,22 @@
 # Aliases for my things
-
-# PHP Aliases
-alias artisan="php artisan"
-alias phpunit="vendor/bin/phpunit"
-
-# MySQL aliases
-alias newdb="mysqladmin -uroot create"
-alias deletedb="mysqladmin -uroot drop"
-alias sqlog="mysql -uroot"
-alias mysqlstart="mysql.server start"
-alias mysqlstop="mysql.server stop"
-
-# npm aliases
-alias npmdir="cd /usr/local/share/npm/lib/node_modules"
-
-# PostgreSQL aliases
-alias pgstart="postgres -D /usr/local/var/postgres"
+alias vim="nvim"
+alias vimrc="nvim ~/.config/nvim/init.vim"
 
 # ZSH and CLI aliases
 alias profile="vim ~/.zshrc"
 alias l="ls -la"
 alias p="cd ~/Projects"
 alias dots="cd ~/.dotfiles"
-alias vimrc="vim ~/.dotfiles/vim/vimrc"
-
-# Octopress Aliases and functions
-alias octgen="rake generate"
-alias octdep="rake deploy"
-alias octpre="rake preview"
+# alias vimrc="vim ~/.dotfiles/vim/vimrc"
 
 # IRC (irssi)
 alias irc="irssi -c freenode -n definiv"
 
 # System Memory analysis aliases
 alias psall="ps -axm -o 'rss,comm'"
-alias space="du -sh"
-
-# Homestead commands
-alias vm="cd ~/Homestead && vagrant ssh"
 
 # Other good things to have
 alias cpwd="pwd | tr -d '\n' | pbcopy"
-alias htd="/Applications/MAMP/htdocs"
 alias lhosts="cat ~/.ssh/config | grep Host\ | sed 's/Host\ //g'"
 
 # Better tree support
