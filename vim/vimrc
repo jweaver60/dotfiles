@@ -81,14 +81,7 @@ Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-rails'
 
 Plug 'itchyny/lightline.vim'
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'component': {
-      \   'readonly': '%{&readonly?"x":""}',
-      \ },
-      \ 'separator': { 'left': '', 'right': '' },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+let g:lightline = { 'colorscheme': 'PaperColor' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
@@ -101,6 +94,7 @@ Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tomasr/molokai'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
   let g:tmuxline_powerline_separators = 0
@@ -108,7 +102,7 @@ Plug 'edkolev/tmuxline.vim'
 call plug#end()
 
 set background=dark
-colorscheme molokai
+colorscheme PaperColor
 set colorcolumn=81
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 
