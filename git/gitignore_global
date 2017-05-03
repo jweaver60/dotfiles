@@ -1,7 +1,5 @@
 *~
 .DS_Store
-.ruby-version
-.ruby-gemset
 *.swp
 .idea
 dev_local.exs

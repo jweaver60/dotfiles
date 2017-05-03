@@ -1,6 +1,6 @@
 # Definiv Dotfiles
 
-This is the beginning of my dotfiles repo. 
+This is the beginning of my dotfiles repo.
 
 ### Vim/MacVim
 --------------
@@ -14,9 +14,5 @@ Use whichever one applies to your preferred shell (or both).
 
 ### Git
 --------------
-Right now the `git` directory only contains the `gitignore_global` until I can find a way to hide `.gitcongfig` credentials. This 
+Right now the `git` directory only contains the `gitignore_global` until I can find a way to hide `.gitcongfig` credentials. This
 will need to be symlinked to your user directory.
-
-### RVM
---------------
-The `rvm` directory contains my basic `rvmrc` file that needs to be symlinked to your user directory.

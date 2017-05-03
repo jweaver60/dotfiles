@@ -1,6 +1,0 @@
-# My path stuff
-
-export PATH=/usr/local/bin:$PATH
-
-# exported path for Node through Homebrew
-export PATH=/usr/local/share/npm/bin:$PATH

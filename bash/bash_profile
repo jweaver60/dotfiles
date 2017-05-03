@@ -1,4 +1,0 @@
-source ~/.dotfiles/bash/path
-source ~/.dotfiles/bash/alias
-source ~/.dotfiles/bash/prompt
-source ~/.dotfiles/bash/sublime

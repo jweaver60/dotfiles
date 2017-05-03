@@ -1,4 +1,1 @@
-# My PATH is awesome
-
-# Customize to your needs...
 export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/local/share/npm/bin:~/.composer/vendor/bin:$PATH

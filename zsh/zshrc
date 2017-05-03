@@ -51,9 +51,9 @@ plugins=(git)
 
 # source some files
 source $ZSH/oh-my-zsh.sh
-source ~/.dotfiles/zsh/alias
-source ~/.dotfiles/zsh/functions
-source ~/.secrets
-source ~/.dotfiles/zsh/python
+source ~/.dotfiles/shell/alias
+source ~/.dotfiles/shell/functions
+source ~/.dotfiles/shell/python
 
+[ -f ~/.secrets ] && source ~/.secrets
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
