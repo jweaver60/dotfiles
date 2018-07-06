@@ -71,9 +71,9 @@ Plug 'junegunn/fzf.vim'
   augroup END
 
 Plug 'neomake/neomake'
-augroup localneomake
-  autocmd! BufWritePost * Neomake
-augroup END
+  augroup localneomake
+    autocmd! BufWritePost * Neomake
+  augroup END
 
 Plug 'slashmili/alchemist.vim'
   let g:alchemist#elixir_erlang_src = "/usr/local/share/src"
@@ -81,19 +81,20 @@ Plug 'slashmili/alchemist.vim'
 Plug 'tpope/vim-rails'
 
 Plug 'itchyny/lightline.vim'
-let g:lightline = { 'colorscheme': 'PaperColor' }
+  let g:lightline = { 'colorscheme': 'PaperColor' }
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   let g:deoplete#enable_at_startup = 1
   if !exists('g:deoplete#omni#input_patterns')
     let g:deoplete#omni#input_patterns = {}
   endif
-  " use tab for completion (not working with UltiSnips currently)
+  " use tab for completion
   inoremap <expr><Tab> pumvisible() ? "\<c-n>" : "\<Tab>"
   inoremap <expr><S-Tab> pumvisible() ? "\<c-p>" : "\<S-Tab>"
 
 Plug 'powerman/vim-plugin-AnsiEsc'
 Plug 'tomasr/molokai'
+Plug 'ayu-theme/ayu-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
@@ -101,8 +102,10 @@ Plug 'edkolev/tmuxline.vim'
 
 call plug#end()
 
+set termguicolors
+let ayucolor="mirage"
 set background=dark
-colorscheme PaperColor
+colorscheme molokai
 set colorcolumn=81
 set guicursor=n-v-c:block-Cursor/lCursor-blinkon0,i-ci:ver25-Cursor/lCursor,r-cr:hor20-Cursor/lCursor
 

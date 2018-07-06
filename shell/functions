@@ -9,3 +9,7 @@ psover() {
 cdsearch() {
   find ~/Library/Developer/CoreSimulator/Devices -name $1.sqlite
 }
+
+homestead() {
+  ( cd ~/Homestead && vagrant $* )
+}

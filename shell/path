@@ -1,1 +1,4 @@
-export PATH=/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/local/share/npm/bin:~/.composer/vendor/bin:$PATH
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=/usr/local/bin:/usr/local/sbin:~/bin:/usr/local/heroku/bin:/usr/local/share/npm/bin:~/.composer/vendor/bin:/usr/local/opt/qt@5.5/bin:$PATH
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools

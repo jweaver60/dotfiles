@@ -1,6 +1,6 @@
 [user]
-	name = "Jake Weaver"
-	email = "jweaver60@gmail.com"
+	name = Jake Weaver
+	email = jweaver60@gmail.com
 [core]
 	excludesfile = /Users/jake/.gitignore_global
 [push]
@@ -25,9 +25,10 @@
 [merge]
 	tool = sourcetree
 [filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
 	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [github]
 	user = jweaver60
 [commit]

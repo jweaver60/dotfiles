@@ -4,3 +4,8 @@
 .idea
 dev_local.exs
 test_local.exs
+access_log
+error_log
+zend_cache--*
+.vscode
+npm-debug.log

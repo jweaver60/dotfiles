@@ -1,6 +1,7 @@
 # Aliases for my things
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim/init.vim"
+alias cat=ccat
 
 # ZSH and CLI aliases
 alias profile="vim ~/.zshrc"
