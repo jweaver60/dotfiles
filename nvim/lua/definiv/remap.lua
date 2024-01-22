@@ -19,3 +19,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 -- replace all occurences of current word
 vim.keymap.set("n", "<leader>s", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
 
+-- resize splits with alt + hjkl
+vim.keymap.set("n", "<M-h>", "<C-w>>")
+vim.keymap.set("n", "<M-j>", "<C-w>-")
+vim.keymap.set("n", "<M-k>", "<C-w>+")
+vim.keymap.set("n", "<M-l>", "<C-w><")
