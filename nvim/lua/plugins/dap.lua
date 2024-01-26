@@ -2,7 +2,7 @@ return {
 	"mfussenegger/nvim-dap",
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
-		"suketa/nvim-dap-ruby",
+		-- "suketa/nvim-dap-ruby",
 	},
 
 	keys = {
@@ -85,13 +85,29 @@ return {
 		{
 			"<leader>dc",
 			function()
-				require("dapui").close()
+				require("dapui").toggle()
 			end,
 		},
 	},
 
-	init = function()
+	config = function()
 		local dap, dapui = require("dap"), require("dapui")
+		dapui.setup()
+
+		dap.adapters.ruby = function(callback, config)
+			vim.defer_fn(function()
+				callback({ type = "executable", command = "bundle", args = { "exec", "rdbg", "--attach" } })
+			end, config.waiting)
+		end
+
+		dap.configurations.ruby = {
+			{
+				type = "ruby",
+				name = "Attach to Rails server",
+				request = "attach",
+				waiting = 1000,
+			},
+		}
 
 		dap.listeners.before.attach.dapui_config = function()
 			dapui.open()
@@ -107,8 +123,8 @@ return {
 		end
 	end,
 
-	config = function()
-		require("dapui").setup()
-		require("dap-ruby").setup()
-	end,
+	-- config = function()
+	-- 	require("dapui").setup()
+	-- 	require("dap-ruby").setup()
+	-- end,
 }
